@@ -18,7 +18,7 @@ if __name__ == '__main__':
     AttachUserToGroup('PosD2', 'PosD_Group2')
 
     # Create and Attach Policies to groups
-    Creator.CreatePolicy('PosD_iam_full', '.\\policydocuments\\ec2.json')
+    Creator.CreatePolicy('PosD_iam_full', '.\\policydocuments\\iamfull.json')
     Attacher.AttachPolicyToGroup(Creator.polArn, 'PosD_Group1')
-    Creator.CreatePolicy('PosD_iam_restricted', '.\\policydocuments\\ec2.json')
+    Creator.CreatePolicy('PosD_iam_restricted', '.\\policydocuments\\iamrestricted.json')
     Attacher.AttachPolicyToGroup(Creator.polArn, 'PosD_Group2')
