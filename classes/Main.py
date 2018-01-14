@@ -7,7 +7,7 @@ if __name__ == '__main__':
 
     # Create Users
     Creator.CreateUser('PosD1')
-    Creator.CreateUser('PosD1')
+    Creator.CreateUser('PosD2')
 
     # Create Groups
     Creator.CreateGroup('PosD_Group1')

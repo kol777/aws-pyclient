@@ -75,4 +75,30 @@ resource "aws_iam_group_policy_attachment" "Attach_iam_full_to_PosD_Group_1" {
 resource "aws_iam_group_policy_attachment" "Attach_iam_restricted_to_PosD_Group_2" {
   group      = "${aws_iam_group.PosD_Group2.name}"
   policy_arn = "${aws_iam_policy.iam_restricted.arn}"
+
+}
+
+resource "aws_iam_role" "PosD2_admin_role" {
+    name = "IamAdminRole"
+    assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${aws_iam_user.PosD2.arn}"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_policy_attachment" "IAM_Admin_to_PosD2_User" {
+    name = "external_admin_policy_attachment"
+    roles = ["${aws_iam_role.PosD2_admin_role.name}"]
+    policy_arn = "${aws_iam_policy.iam_full.arn}"
 }
